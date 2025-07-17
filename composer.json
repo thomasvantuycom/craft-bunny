@@ -1,0 +1,48 @@
+{
+  "name": "thomasvantuycom/craft-bunny",
+  "description": "Bunny.net integration for Craft CMS.",
+  "type": "craft-plugin",
+  "version": "1.0.0",
+  "license": "MIT",
+  "support": {
+    "email": "thomasvantuycom@proton.me",
+    "issues": "https://github.com/thomasvantuycom/craft-bunny/issues?state=open",
+    "source": "https://github.com/thomasvantuycom/craft-bunny",
+    "docs": "https://github.com/thomasvantuycom/craft-bunny",
+    "rss": "https://github.com/thomasvantuycom/craft-bunny/releases.atom"
+  },
+  "require": {
+    "php": "^8.2",
+    "craftcms/cms": "^5.8.0"
+  },
+  "require-dev": {
+    "craftcms/ecs": "dev-main",
+    "craftcms/phpstan": "dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "thomasvantuycom\\craftbunny\\": "src/"
+    }
+  },
+  "extra": {
+    "handle": "bunny",
+    "name": "Bunny.net",
+    "developer": "Thomas Vantuycom",
+    "documentationUrl": "https://github.com/thomasvantuycom/craft-bunny"
+  },
+  "scripts": {
+    "check-cs": "ecs check --ansi",
+    "fix-cs": "ecs check --ansi --fix",
+    "phpstan": "phpstan --memory-limit=1G"
+  },
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "8.2"
+    },
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
+  }
+}

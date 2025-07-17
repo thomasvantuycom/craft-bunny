@@ -1,0 +1,42 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.selectizeField({
+    label: 'Primary Region'|t('bunny'),
+    tip: (fs.region starts with '$') ? null : 'This can be set to an environment variable matching one of the option values.'|t('app'),
+    id: 'region',
+    name: 'region',
+    value: fs.region,
+    options: [
+        {value: 'de', label: 'Frankfurt'|t('bunny')},
+        {value: 'uk', label: 'London'|t('bunny')},
+        {value: 'ny', label: 'New York'|t('bunny')},
+        {value: 'la', label: 'Los Angeles'|t('bunny')},
+        {value: 'sg', label: 'Singapore'|t('bunny')},
+        {value: 'se', label: 'Stockholm'|t('bunny')},
+        {value: 'br', label: 'São Paulo'|t('bunny')},
+        {value: 'jh', label: 'Johannesburg'|t('bunny')},
+        {value: 'syd', label: 'Sydney'|t('bunny')},
+    ]|multisort('label'),
+    includeEnvVars: true,
+    errors: fs.getErrors('region'),
+}) }}
+
+{{ forms.autosuggestField({
+    label: "Zone"|t('bunny'),
+    id: 'zone',
+    name: 'zone',
+    value: fs.zone,
+    errors: fs.getErrors('zone'),
+    suggestEnvVars: true,
+    required: true,
+}) }}
+
+{{ forms.autosuggestField({
+    label: "Access Key"|t('bunny'),
+    id: 'accessKey',
+    name: 'accessKey',
+    value: fs.accessKey,
+    errors: fs.getErrors('accessKey'),
+    suggestEnvVars: true,
+    required: true,
+}) }}
