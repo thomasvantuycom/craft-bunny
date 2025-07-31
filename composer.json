@@ -2,7 +2,7 @@
   "name": "thomasvantuycom/craft-bunny",
   "description": "Bunny.net integration for Craft CMS.",
   "type": "craft-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "support": {
     "email": "thomasvantuycom@proton.me",
