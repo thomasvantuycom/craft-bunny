@@ -9,7 +9,6 @@ use craft\errors\FsException;
 use craft\helpers\App;
 use craft\helpers\Json;
 use craft\models\FsListing;
-use DateTime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
@@ -82,7 +81,7 @@ class BunnyStorageFs extends Fs
                     'basename' => $fileMetadata['ObjectName'],
                     'type' => $fileMetadata['IsDirectory'] === true ? 'dir' : 'file',
                     'fileSize' => $fileMetadata['Length'],
-                    'dateModified' => DateTime::createFromFormat('Y-m-d\TH:i:s.v', $fileMetadata['LastChanged'])->getTimestamp(),
+                    'dateModified' => strtotime($fileMetadata['LastChanged']),
                 ]);
 
                 if ($fileMetadata['IsDirectory'] && $recursive) {
@@ -118,7 +117,7 @@ class BunnyStorageFs extends Fs
             $response = $this->getClient()->request('DESCRIBE', $uri);
             $body = Json::decode($response->getBody()->getContents());
 
-            return DateTime::createFromFormat('Y-m-d\TH:i:s.v', $body['LastChanged'])->getTimestamp();
+            return strtotime($body['LastChanged']);
         } catch (RequestException $e) {
             throw new FsException($e->getMessage(), 0, $e);
         }
