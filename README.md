@@ -1,9 +1,10 @@
 # Bunny.net for Craft CMS
 
-This [Craft CMS](https://craftcms.com/) plugin seamlessly integrates with [Bunny.net](https://bunny.net/), providing two powerful filesystem drivers:
+This [Craft CMS](https://craftcms.com/) plugin seamlessly integrates with [Bunny.net](https://bunny.net/), providing three powerful filesystem drivers:
 
 - Bunny Storage Filesystem – Upload assets directly from Craft’s control panel to your Bunny Storage Zone.
 - Bunny CDN Filesystem – Offload image transformations to Bunny's Dynamic Image API, reducing load on your Craft CMS server.
+- Bunny Stream Filesystem – Upload videos directly from Craft’s control panel to Bunny Stream.
 
 Ideal for boosting performance and streamlining media delivery, this plugin makes it easy to manage and optimize your assets using Bunny.net’s infrastructure.
 
@@ -72,3 +73,19 @@ Bunny currently supports the following Craft transformation modes:
 - fit
 
 Other modes are not supported and will be ignored.
+
+### Bunny Stream Filesystem
+
+The Bunny Stream filesystem is intended specifically for managing streaming videos. To configure the filesystem, you'll need the following:
+
+- Library ID – The ID of your Bunny.net stream library.
+- CDN Hostname – The hostname found under the "API" tab in your stream settings.
+- Access Key – This is not your general Bunny.net API key. It is also found in the "API" tab.
+
+Because Bunny Stream does not store original file extensions, you'll need to add the following to your `general.php` Craft config file for the filesystem to work:
+
+```php
+->extraAllowedFileExtensions([''])
+```
+
+Once configured, the Direct Play URL for a video will be available via the `getUrl()` method on your asset.

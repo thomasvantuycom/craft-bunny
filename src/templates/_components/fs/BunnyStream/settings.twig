@@ -1,0 +1,40 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.autosuggestField({
+    label: "Library ID"|t('bunny'),
+    id: 'libraryId',
+    name: 'libraryId',
+    value: fs.libraryId,
+    errors: fs.getErrors('libraryId'),
+    suggestEnvVars: true,
+    required: true,
+}) }}
+
+{{ forms.autosuggestField({
+    label: "Collection ID"|t('bunny'),
+    id: 'collectionId',
+    name: 'collectionId',
+    value: fs.collectionId,
+    errors: fs.getErrors('collectionId'),
+    suggestEnvVars: true,
+}) }}
+
+{{ forms.autosuggestField({
+    label: "CDN Hostname"|t('bunny'),
+    id: 'cdnHostname',
+    name: 'cdnHostname',
+    value: fs.cdnHostname,
+    errors: fs.getErrors('cdnHostname'),
+    suggestEnvVars: true,
+    required: true,
+}) }}
+
+{{ forms.autosuggestField({
+    label: "Access Key"|t('bunny'),
+    id: 'accessKey',
+    name: 'accessKey',
+    value: fs.accessKey,
+    errors: fs.getErrors('accessKey'),
+    suggestEnvVars: true,
+    required: true,
+}) }}
