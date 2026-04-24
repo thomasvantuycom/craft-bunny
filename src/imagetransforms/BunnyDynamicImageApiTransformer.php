@@ -66,7 +66,9 @@ class BunnyDynamicImageApiTransformer extends Component implements ImageTransfor
             $params['format'] = $format;
         }
 
-        $url = $asset->getVolume()->getTransformFs()->getRootUrl() . $asset->getPath();
+        $volume = $asset->getVolume();
+
+        $url = $volume->getTransformFs()->getRootUrl() . $volume->getSubpath() . $asset->getPath();
 
         return UrlHelper::urlWithParams($url, $params);
     }
