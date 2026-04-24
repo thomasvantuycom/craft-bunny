@@ -1,5 +1,10 @@
 # Release Notes for Bunny.net
 
+## 1.1.1 - 2026-04-24
+
+### Fixed
+- Respect volume subpath during image transforms ([#5](https://github.com/thomasvantuycom/craft-bunny/issues/5)).
+
 ## 1.1.0 - 2025-11-03
 
 ### Added
