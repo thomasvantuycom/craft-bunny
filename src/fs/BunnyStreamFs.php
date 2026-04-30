@@ -152,6 +152,16 @@ class BunnyStreamFs extends Fs
         }
     }
 
+    public function getVideo(string $videoId): array
+    {
+        try {
+            $response = $this->getClient()->request('GET', $videoId);
+            return Json::decode($response->getBody()->getContents());
+        } catch (RequestException $e) {
+            throw new FsException($e->getMessage(), 0, $e);
+        }
+    }
+
     public function read(string $path): string
     {
         throw new NotSupportedException('read() is not implemented.');

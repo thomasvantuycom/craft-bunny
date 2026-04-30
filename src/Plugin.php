@@ -108,7 +108,19 @@ class Plugin extends BasePlugin
 
             if ($fs instanceof BunnyStreamFs) {
                 $cdnHostname = App::parseEnv($fs->cdnHostname);
-                $event->url = 'https://' . $cdnHostname . '/' . $asset->getFilename() . '/thumbnail.jpg';
+                $videoId = $asset->getFilename();
+
+                try {
+                    $video = $fs->getVideo($videoId);
+                    if (isset($video['thumbnailFileName'])) {
+                        $event->url = 'https://' . $cdnHostname . '/' . $videoId . '/' . $video['thumbnailFileName'];
+                    } else {
+                        $event->url = 'https://' . $cdnHostname . '/' . $videoId . '/thumbnail.jpg';
+                    }
+                } catch (\Exception $e) {
+                    Craft::error('Bunny Stream error: ' . $e->getMessage(), __METHOD__);
+                    $event->url = 'https://' . $cdnHostname . '/' . $videoId . '/thumbnail.jpg';
+                }
             }
         });
 
